@@ -18,7 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+<style>
+    .completed{
+        text-decoration:line-through;
+    }
+    </style>
 </head>
 <body>
     <div id="app">

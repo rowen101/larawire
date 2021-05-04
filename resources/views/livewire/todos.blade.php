@@ -15,14 +15,16 @@
         <li class="list-group-item d-flex justify-content-between align-item-center">
 
             <div>
-                <input type="checkbox" class="mr-4"/>
-                <a href="#" class="">{{ $todo->title }}</a>
+                <input type="checkbox" wire:change="toggleTodo({{ $todo->id }})" class="mr-4" {{ $todo->completed ? 'checked' : '   '}}/>
+                <a href="#" class="{{ $todo->completed ? 'completed' : ''}}">{{ $todo->title }}</a>
             </div>
             <div>
-                <form action="#" method="POST">
-                    @csrf
-                    <button class="btn btn-sm btn-danger">&times;</button>
-                </form>
+
+
+                    <button class="btn btn-sm btn-danger"
+                    onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
+                     wire:click="deleteTodo({{ $todo->id }})">&times;</button>
+
             </div>
         </li>
           @endforeach

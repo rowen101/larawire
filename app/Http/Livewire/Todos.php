@@ -23,6 +23,18 @@ class Todos extends Component
 
         $this->title = '';
     }
+
+    public function deleteTodo($id)
+    {
+        Todo::find($id)->delete();
+    }
+    public function toggleTodo($id)
+    {
+        $todo = Todo::find($id);
+
+        $todo->completed = !$todo->completed;
+        $todo->save();
+    }
     public function render()
     {
         return view('livewire.todos', [
