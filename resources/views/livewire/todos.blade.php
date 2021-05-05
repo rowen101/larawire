@@ -16,7 +16,8 @@
 
             <div>
                 <input type="checkbox" wire:change="toggleTodo({{ $todo->id }})" class="mr-4" {{ $todo->completed ? 'checked' : '   '}}/>
-                <a href="#" class="{{ $todo->completed ? 'completed' : ''}}">{{ $todo->title }}</a>
+                <a href="#" class="{{ $todo->completed ? 'completed' : ''}}" onclick="updateTodoPrompt('{{ $todo->title }}') || event.stopImmediatePropagation()"
+                    wire:click="updateTodo({{ $todo->id }}, todoUpdated)">{{ $todo->title }}</a>
             </div>
             <div>
 
@@ -29,4 +30,23 @@
         </li>
           @endforeach
     </ul>
+   <script>
+       let todoUpdated='';
+
+        function updateTodoPrompt(title) {
+            event.preventDefault();
+            todoUpdated ='';
+            const todo = prompt('Update Todo', title);
+
+            if(todo == null || todo.trim() == ''){
+                console.log('cancel or empty');
+                todoUpdated = '';
+                return false;
+            }
+
+            todoUpdated = todo;
+            return true;
+        }
+
+   </script>
 </div>

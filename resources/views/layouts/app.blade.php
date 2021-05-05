@@ -21,6 +21,7 @@
 <style>
     .completed{
         text-decoration:line-through;
+        font-style: italic;
     }
     </style>
 </head>

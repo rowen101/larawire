@@ -24,6 +24,12 @@ class Todos extends Component
         $this->title = '';
     }
 
+    public function updateTodo($id, $title)
+    {
+        $todo = Todo::find($id);
+        $todo->title = $title;
+        $todo->save();
+    }
     public function deleteTodo($id)
     {
         Todo::find($id)->delete();
